@@ -31,4 +31,21 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Build Docker Image
       run: docker build -t surbhayy/github-actions-docker-java-app:0.0.2.Release . 
+    - name: Build Docker Image
+      run: docker build -t surbhayy/github-actions-docker-java-app:0.0.2.Release .
+ 
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Push Docker Image
+      run: docker push surbhayy/github-actions-docker-java-app:0.0.2.Release
+
+    - name: Deploy to Prod Environment
+      run: docker run -p 5000:5000 surbhayy/github-actions-docker-java-app:0.0.2.Release
+ 
+
+
       
