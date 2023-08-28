@@ -31,8 +31,6 @@ jobs:
       run: mvn -B install --file pom.xml
     - name: Build Docker Image
       run: docker build -t surbhayy/github-actions-docker-java-app:0.0.2.Release . 
-    - name: Build Docker Image
-      run: docker build -t surbhayy/github-actions-docker-java-app:0.0.2.Release .
  
     - name: Login to Docker Hub
       uses: docker/login-action@v1
